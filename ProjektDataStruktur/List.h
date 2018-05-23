@@ -199,7 +199,7 @@ bool List<T>::removeElement(const T & element)
 	if (found == true && firstElement == false) {
 		toRemove = walker->next;
 		if (toRemove->next == nullptr) {
-			walker->next == nullptr;
+			walker->next = nullptr;
 		}
 		else {
 			walker->next = toRemove->next;
