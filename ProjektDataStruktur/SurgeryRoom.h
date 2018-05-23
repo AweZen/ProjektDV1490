@@ -10,14 +10,17 @@ public:
 	bool addSurgery(Surgery surgery);
 	bool removeSurgery(Surgery surgery);
 	void printSurgerys();
-	void setMinutesOpen(int time);
+	void setMinutesOpen(int time);	
+	bool operator==(const SurgeryRoom& other);
+	int getAmountOfSurgerys()const;
+	Surgery GetSurgery(int i)const;
 	~SurgeryRoom();
 
 private:
 	int Maxtime;
 	int timeUsed;
 	int days;
-	List<Surgery> Surgerys;
+	List<Surgery> surgerys;
 };
 
 SurgeryRoom::SurgeryRoom(int days, int MinutesOpen)
@@ -32,7 +35,7 @@ bool SurgeryRoom::addSurgery(Surgery surgery)
 	bool added = false;
 	this->timeUsed += surgery.getTime();
 	if (this->timeUsed <= this->Maxtime) {
-		this->Surgerys.insertAt(0, surgery);
+		this->surgerys.insertAt(0, surgery);
 		added = true;
 	}
 	else {
@@ -45,7 +48,7 @@ bool SurgeryRoom::addSurgery(Surgery surgery)
 bool SurgeryRoom::removeSurgery(Surgery surgery)
 {
 	bool removed = false;
-	if (this->Surgerys.removeElement(surgery)) {
+	if (this->surgerys.removeElement(surgery)) {
 		removed = true;
 		this->timeUsed -= surgery.getTime();
 	}
@@ -58,8 +61,8 @@ void SurgeryRoom::printSurgerys()
 	int currentHour = 8;
 	int currentMinute = 0;
 	cout << "This room is open from 8:00 to " << (this->Maxtime / 60)+8 << ":" << (this->Maxtime % 60) << endl;
-	for (int i = 0; i < Surgerys.length(); i++) {
-		temp = Surgerys.getAt(i);
+	for (int i = 0; i < surgerys.length(); i++) {
+		temp = surgerys.getAt(i);
 		cout << "	Operation nummer " << i+1 <<": " << endl;
 		cout << "		Start tid: " << currentHour << ":" << currentMinute;
 		currentHour += temp.getTime() / 60;
@@ -81,6 +84,35 @@ void SurgeryRoom::printSurgerys()
 void SurgeryRoom::setMinutesOpen(int time)
 {
 	this->Maxtime = time;
+}
+
+inline bool SurgeryRoom::operator==(const SurgeryRoom & other)
+{
+	bool result = true;
+	if (this->surgerys.length() == other.surgerys.length()) {
+		for (int i = 0; i < getAmountOfSurgerys(); i++) {
+			if (!(this->surgerys.getAt(i) == other.surgerys.getAt(i))) {
+				result = false;
+			}
+		}
+	}
+	else {
+		result = false;
+	}
+	if (!(this->days == other.days && this->Maxtime == other.Maxtime)) {
+		result = false;
+	}
+	return result;
+}
+
+int SurgeryRoom::getAmountOfSurgerys()const
+{
+	return this->surgerys.length();
+}
+
+inline Surgery SurgeryRoom::GetSurgery(int i)const
+{
+	return this->surgerys.getAt(i);
 }
 
 SurgeryRoom::~SurgeryRoom()
