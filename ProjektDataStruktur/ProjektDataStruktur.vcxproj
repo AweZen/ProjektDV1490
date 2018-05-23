@@ -22,7 +22,6 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F646A8BF-664C-4B5C-B5AD-FD6DD53402E3}</ProjectGuid>
     <RootNamespace>ProjektDataStruktur</RootNamespace>
-    <WindowsTargetPlatformVersion />
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -117,7 +116,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Surgery.h" />
-    <ClInclude Include="SugeryRoom.h" />
+    <ClInclude Include="SurgeryRoom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
