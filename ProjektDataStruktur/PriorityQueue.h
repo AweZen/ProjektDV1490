@@ -10,12 +10,13 @@ private:
 	int capacity;
 	int nrOfItems;
 	int capacityIncrement;
+	bool sortBig;
 	void expand();
 	int partition(Surgery array[], int start, int end);
 	void swapSugery(Surgery & itemOne, Surgery & itemAdjacencyInfowo);
 	void sort(Surgery array[], int start, int end);
 public:
-	PriorityQueue(int capacity = 2, int capacityIncrement = 5);
+	PriorityQueue(int capacity = 2, int capacityIncrement = 5, bool sort = true);
 	PriorityQueue(const PriorityQueue& origobj);
 	virtual ~PriorityQueue();
 	void enqueue(const Surgery& element);
@@ -44,11 +45,21 @@ int PriorityQueue::partition(Surgery array[], int start, int end)
 
 	for (int i = (start + 1); i <= end; i++)
 	{
-		if (array[i].getTime() < pivotValue.getTime())
-		{
-			swapSugery(array[i], array[pivotPos + 1]);
-			swapSugery(array[pivotPos], array[pivotPos + 1]);
-			pivotPos++;
+		if (this->sortBig) {
+			if (array[i].getTime() < pivotValue.getTime())
+			{
+				swapSugery(array[i], array[pivotPos + 1]);
+				swapSugery(array[pivotPos], array[pivotPos + 1]);
+				pivotPos++;
+			}
+		}
+		else {
+			if (array[i].getTime() > pivotValue.getTime())
+			{
+				swapSugery(array[i], array[pivotPos + 1]);
+				swapSugery(array[pivotPos], array[pivotPos + 1]);
+				pivotPos++;
+			}
 		}
 	}
 	return pivotPos;
@@ -74,12 +85,13 @@ void PriorityQueue::sort(Surgery array[], int start, int end)
 }
 
 
-PriorityQueue::PriorityQueue(int capacity, int capacityIncrement)
+PriorityQueue::PriorityQueue(int capacity, int capacityIncrement, bool sort)
 {
 	this->nrOfItems = 0;
 	this->capacity = capacity;
 	this->capacityIncrement = capacityIncrement;
 	this->queue = new Surgery[this->capacity];
+	this->sortBig = sort;
 }
 
 PriorityQueue::PriorityQueue(const PriorityQueue & origObj)
@@ -108,13 +120,25 @@ void PriorityQueue::enqueue(const Surgery & element)
 	bool found = false;
 	int pos = 0;
 	for (int i = this->nrOfItems - 1; i >= 0 && found == false; i--) {
-		if (this->queue[i].getTime() > element.getTime()) {
-			pos = i + 1;
-			found = true;
+		if (this->sortBig) {
+			if (this->queue[i].getTime() > element.getTime()) {
+				pos = i + 1;
+				found = true;
+			}
+			else {
+				this->queue[i + 1] = this->queue[i];
+			}
 		}
 		else {
-			this->queue[i + 1] = this->queue[i];
+			if (this->queue[i].getTime() < element.getTime()) {
+				pos = i + 1;
+				found = true;
+			}
+			else {
+				this->queue[i + 1] = this->queue[i];
+			}
 		}
+
 	}
 
 	this->queue[pos] = element;
