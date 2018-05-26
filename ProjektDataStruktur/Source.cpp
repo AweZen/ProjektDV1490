@@ -16,102 +16,138 @@ int main() {
 
 
 	cout << "Welcome cunt! <3 " << endl;
-	clock_t start;
-	clock_t end;
+	clock_t startRun1,startRun2,startRun3;
+	clock_t endRun1, endRun2, endRun3;
 	const int cap = 3;
 	//TESTAR 1A
 	List<Surgery> surgerys = readFromFile("Operationer_1a.txt");
-	SurgeryRoom rooms1a[cap];	
+	SurgeryRoom rooms1aRun1[cap];	
+	SurgeryRoom rooms1aRun2[cap];
+	SurgeryRoom rooms1aRun3[cap];
+
 
 	for (int i = 0; i < cap; i++) {
-		rooms1a[i].setMinutesOpen(660);
+		rooms1aRun1[i].setMinutesOpen(660);	
+		rooms1aRun2[i].setMinutesOpen(660);
+		rooms1aRun3[i].setMinutesOpen(660);
 	}
 
-	cout << endl << endl << endl << endl << endl << "Run number 1" << endl << endl << endl << endl << endl;
+	startRun1 = clock();
+	algoritm(surgerys, rooms1aRun1,3 );
+	endRun1 = clock();
 
-	algoritm(surgerys, rooms1a,3 );
-	printOperation(rooms1a, 3);
-
-	cout << endl << endl << endl << endl << endl << "Run number 2" << endl << endl << endl << endl;
-	for (int i = 0; i < cap; i++) {
-		rooms1a[i].reset();
-
-	}
+	startRun2 = clock();
 	surgerys = sortMin(surgerys);
-	algoritm(surgerys, rooms1a, 3);
-	printOperation(rooms1a, 3);
+	algoritm(surgerys, rooms1aRun2, 3);
+	endRun2 = clock();
 
 
-	cout << endl << endl << endl << endl << endl << "Run number 3" << endl << endl << endl << endl << endl;
-
-	for (int i = 0; i < cap; i++) {
-		rooms1a[i].reset();
-	}
-	start = clock();
+	startRun3 = clock();
 	surgerys = sortMax(surgerys);
-	algoritm(surgerys, rooms1a, 3);
-	printOperation(rooms1a, 3);
-	end = clock();
-	cout << endl << endl << endl << end - start << endl;
+	algoritm(surgerys, rooms1aRun3, 3);
+	endRun3 = clock();
+	cout << endl << "Run 1: " << endl << endl;
+	printOperation(rooms1aRun1, 3);
+	cout << endl << endl << "Run 2: " << endl << endl;
+	printOperation(rooms1aRun2, 3);
+	cout << endl <<endl << "Run 3: " << endl << endl;
+	printOperation(rooms1aRun3, 3);
+	cout << endl << endl << endl << "Time for the runs:" << endl;
+	cout << "Run 1 : " << endRun1 - startRun1 << endl;
+	cout << "Run 2 : " << endRun2 - startRun2 << endl;
+	cout << "Run 3 : " << endRun3 - startRun3 << endl;
 
 
 	//TESTAR 1B
 
 	surgerys = readFromFile("Operationer_1b.txt");
-	SurgeryRoom rooms1b[cap];
+	SurgeryRoom rooms1bRun1[cap];
+	SurgeryRoom rooms1bRun2[cap];
+	SurgeryRoom rooms1bRun3[cap];
 
 	for (int i = 0; i < cap; i++) {
-		rooms1b[i].setMinutesOpen(660);
-	}
-
-	cout << endl << endl << endl << endl << endl << "Run number 1" << endl << endl << endl << endl << endl;
-
-	algoritm(surgerys, rooms1b, 3);
-	printOperation(rooms1b, 3);
-
-	cout << endl << endl << endl << endl << endl << "Run number 2" << endl << endl << endl << endl;
-	for (int i = 0; i < cap; i++) {
-		rooms1b[i].reset();
+		rooms1bRun1[i].setMinutesOpen(660);
+		rooms1bRun2[i].setMinutesOpen(660);
+		rooms1bRun3[i].setMinutesOpen(660);
 
 	}
+
+	startRun1 = clock();
+	algoritm(surgerys, rooms1bRun1, 3);
+	endRun1 = clock();
+
+	startRun2 = clock();
 	surgerys = sortMin(surgerys);
-	algoritm(surgerys, rooms1b, 3);
-	printOperation(rooms1b, 3);
+	algoritm(surgerys, rooms1bRun2, 3);
+	endRun2 = clock();
 
 
-	cout << endl << endl << endl << endl << endl << "Run number 3" << endl << endl << endl << endl << endl;
-
-	for (int i = 0; i < cap; i++) {
-		rooms1b[i].reset();
-	}
-	start = clock();
+	startRun3 = clock();
 	surgerys = sortMax(surgerys);
-	algoritm(surgerys, rooms1b, 3);
-	printOperation(rooms1b, 3);
-	end = clock();
-	cout << endl << endl << endl << end - start << endl;
+	algoritm(surgerys, rooms1bRun3, 3);
+	endRun3 = clock();
 
 
+	cout << endl << "Run 1: " << endl << endl;
+	printOperation(rooms1bRun1, 3);
+	cout << endl << endl << "Run 2: " << endl << endl;
+	printOperation(rooms1bRun2, 3);
+	cout << endl << endl << "Run 3: " << endl << endl;
+	printOperation(rooms1bRun3, 3);
+	 
+	cout << endl << endl << endl << "Time for the runs:" << endl;
+	cout << "Run 1 : " << endRun1 - startRun1 << endl;
+	cout << "Run 2 : " << endRun2 - startRun2 << endl;
+	cout << "Run 3 : " << endRun3 - startRun3 << endl;
 
 
 
 	//TESTAR 2
-/*
+
 	surgerys = readFromFile("Operationer_2.txt");
-	SurgeryRoom rooms2[cap] = { (2),(2),(2) };
-	rooms2[0].setMinutesOpen(660);
-	rooms2[1].setMinutesOpen(840);
-	rooms2[2].setMinutesOpen(540);
+	SurgeryRoom rooms2Run1[cap] = { (2),(2),(2) };
+	SurgeryRoom rooms2Run2[cap] = { (2),(2),(2) };
+	SurgeryRoom rooms2Run3[cap] = { (2),(2),(2) };
 
-	for (int i = 0; i < cap; i++) {
-		result.insertAt(i, rooms2[i]);
-	}
+	rooms2Run1[0].setMinutesOpen(660);
+	rooms2Run1[1].setMinutesOpen(840);
+	rooms2Run1[2].setMinutesOpen(540);
 
+	rooms2Run2[0].setMinutesOpen(660);
+	rooms2Run2[1].setMinutesOpen(840);
+	rooms2Run2[2].setMinutesOpen(540);
+
+	rooms2Run3[0].setMinutesOpen(660);
+	rooms2Run3[1].setMinutesOpen(840);
+	rooms2Run3[2].setMinutesOpen(540);
+
+	startRun1 = clock();
+	algoritm(surgerys, rooms2Run1, 3);
+	endRun1 = clock();
+
+	startRun2 = clock();
+	surgerys = sortMin(surgerys);
+	algoritm(surgerys, rooms2Run2, 3);
+	endRun2 = clock();
+
+
+	startRun3 = clock();
 	surgerys = sortMax(surgerys);
-	algoritm(surgerys, rooms2, 3);
-	printOperation(rooms2, 3);
+	algoritm(surgerys, rooms2Run3, 3);
+	endRun3 = clock();
 
-	cout << endl << endl << endl << end - start << endl;*/
+	cout << endl << "Run 1: " << endl << endl;
+	printOperation(rooms2Run1, 3);
+	cout << endl << endl << "Run 2: " << endl << endl;
+	printOperation(rooms2Run2, 3);
+	cout << endl << endl << "Run 3: " << endl << endl;
+	printOperation(rooms2Run3, 3);
+
+	cout << endl << endl << endl << "Time for the runs:" << endl;
+	cout << "Run 1 : " << endRun1 - startRun1 << endl;
+	cout << "Run 2 : " << endRun2 - startRun2 << endl;
+	cout << "Run 3 : " << endRun3 - startRun3 << endl;
+
 	system("pause");
 }
 
