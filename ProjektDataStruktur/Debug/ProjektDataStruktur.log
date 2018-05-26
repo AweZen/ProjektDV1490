@@ -1,3 +1,1 @@
-﻿  Source.cpp
-c:\users\awezen\desktop\test\projektdv1490\projektdatastruktur\list.h(94): warning C4715: 'List<Surgery>::operator=': not all control paths return a value
-  ProjektDataStruktur.vcxproj -> C:\Users\AweZen\Desktop\test\ProjektDV1490\Debug\ProjektDataStruktur.exe
+﻿  ProjektDataStruktur.vcxproj -> C:\Users\AweZen\Desktop\test\ProjektDV1490\Debug\ProjektDataStruktur.exe

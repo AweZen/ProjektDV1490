@@ -22,11 +22,9 @@ int main() {
 	//TESTAR 1A
 	List<Surgery> surgerys = readFromFile("Operationer_1a.txt");
 	SurgeryRoom rooms1a[cap];	
-	List<SurgeryRoom> result;
 
 	for (int i = 0; i < cap; i++) {
 		rooms1a[i].setMinutesOpen(660);
-		result.insertAt(i, rooms1a[i]);
 	}
 
 	cout << endl << endl << endl << endl << endl << "Run number 1" << endl << endl << endl << endl << endl;
@@ -64,7 +62,6 @@ int main() {
 
 	for (int i = 0; i < cap; i++) {
 		rooms1b[i].setMinutesOpen(660);
-		result.insertAt(i, rooms1b[i]);
 	}
 
 	cout << endl << endl << endl << endl << endl << "Run number 1" << endl << endl << endl << endl << endl;
@@ -99,7 +96,7 @@ int main() {
 
 
 	//TESTAR 2
-
+/*
 	surgerys = readFromFile("Operationer_2.txt");
 	SurgeryRoom rooms2[cap] = { (2),(2),(2) };
 	rooms2[0].setMinutesOpen(660);
@@ -114,7 +111,7 @@ int main() {
 	algoritm(surgerys, rooms2, 3);
 	printOperation(rooms2, 3);
 
-	cout << endl << endl << endl << end - start << endl;
+	cout << endl << endl << endl << end - start << endl;*/
 	system("pause");
 }
 

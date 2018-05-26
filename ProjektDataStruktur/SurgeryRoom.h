@@ -109,11 +109,11 @@ void SurgeryRoom::printSurgerys()
 
 void SurgeryRoom::reset()
 {
-	this->timeUsed[0] = 0;
 	for(int i = 0; i < this->days; i++){
 		while(this->surgerys[i].length() != 0){	
 			surgerys[i].removeAt(0);
 		}
+		this->timeUsed[i] = 0;
 	}
 }
 
