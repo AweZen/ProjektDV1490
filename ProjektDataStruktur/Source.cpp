@@ -13,6 +13,7 @@ List<Surgery> sortMin(List<Surgery> surgerys);
 
 
 int main() {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 
 	cout << "Welcome cunt! <3 " << endl;
@@ -21,6 +22,7 @@ int main() {
 	const int cap = 3;
 	//TESTAR 1A
 	List<Surgery> surgerys = readFromFile("Operationer_1a.txt");
+	
 	SurgeryRoom rooms1aRun1[cap];	
 	SurgeryRoom rooms1aRun2[cap];
 	SurgeryRoom rooms1aRun3[cap];
@@ -57,7 +59,7 @@ int main() {
 	cout << "Run 2 : " << endRun2 - startRun2 << endl;
 	cout << "Run 3 : " << endRun3 - startRun3 << endl;
 
-
+	
 	//TESTAR 1B
 
 	surgerys = readFromFile("Operationer_1b.txt");
@@ -75,7 +77,7 @@ int main() {
 	startRun1 = clock();
 	algoritm(surgerys, rooms1bRun1, 3);
 	endRun1 = clock();
-
+	
 	startRun2 = clock();
 	surgerys = sortMin(surgerys);
 	algoritm(surgerys, rooms1bRun2, 3);
@@ -147,7 +149,7 @@ int main() {
 	cout << "Run 1 : " << endRun1 - startRun1 << endl;
 	cout << "Run 2 : " << endRun2 - startRun2 << endl;
 	cout << "Run 3 : " << endRun3 - startRun3 << endl;
-
+	
 	system("pause");
 }
 
@@ -195,7 +197,7 @@ void algoritm(List<Surgery> surgerys, SurgeryRoom rooms[],int cap)
 	while(!surgerys.length() == 0){
 		full = false;
 			if (!rooms[i].addSurgery(surgerys.getAt(0)))
-			{
+			{ 
 				full = true;
 				for (int j = 0; j < cap && foundRoom == false; j++) {
 					if (rooms[j].addSurgery(surgerys.getAt(0))) {
@@ -239,7 +241,7 @@ List<Surgery> sortMax(List<Surgery> surgerys)
 	for (int i = 0; i < surgerys.length(); i++) {
 		sorter.enqueue(surgerys.getAt(i));
 	}
-	for (int i = 0; i < surgerys.length()-1; i++) {
+	for (int i = 0; i < surgerys.length(); i++) {
 		sorted.insertAt(0, sorter.dequeue());
 	}
 	return sorted;

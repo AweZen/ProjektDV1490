@@ -15,7 +15,6 @@ public:
 	void setMinutesOpen(int time);	
 	bool operator==(const SurgeryRoom& other);
 	int getAmountOfSurgerys()const;
-	Surgery GetSurgery(int i, int day = 0)const;
 
 private:
 	int *timeUsed;
@@ -83,8 +82,8 @@ void SurgeryRoom::printSurgerys()
 		cout << endl;
 	}
 	
-/*
-	for(int j = 0; j < this->days; j++)
+
+	/*for(int j = 0; j < this->days; j++)
 	{
 		for (int i = 0; i < surgerys[j].length(); i++) {
 			temp = surgerys[j].getAt(i);
@@ -156,12 +155,11 @@ int SurgeryRoom::getAmountOfSurgerys()const
 	return amount;
 }
 
-inline Surgery SurgeryRoom::GetSurgery(int i, int day)const
-{
-
-	return this->surgerys[day].getAt(i);
-}
 
 SurgeryRoom::~SurgeryRoom()
 {
+	delete maxTime;
+	delete timeUsed;
+	delete[] surgerys;
+
 }
